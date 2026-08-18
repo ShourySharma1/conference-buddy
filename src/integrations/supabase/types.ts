@@ -14,7 +14,89 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      attendees: {
+        Row: {
+          badge_id: string
+          checked_in_at: string | null
+          created_at: string
+          designation: string | null
+          email: string | null
+          full_name: string
+          id: string
+          organization: string | null
+          phone: string | null
+          ticket_type: string
+          updated_at: string
+        }
+        Insert: {
+          badge_id: string
+          checked_in_at?: string | null
+          created_at?: string
+          designation?: string | null
+          email?: string | null
+          full_name: string
+          id?: string
+          organization?: string | null
+          phone?: string | null
+          ticket_type?: string
+          updated_at?: string
+        }
+        Update: {
+          badge_id?: string
+          checked_in_at?: string | null
+          created_at?: string
+          designation?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          organization?: string | null
+          phone?: string | null
+          ticket_type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendees_badge_id_fkey"
+            columns: ["badge_id"]
+            isOneToOne: true
+            referencedRelation: "badges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      badges: {
+        Row: {
+          batch: string
+          codec: string
+          created_at: string
+          id: string
+          notes: string | null
+          revoked: boolean
+          serial: number
+          token: string
+        }
+        Insert: {
+          batch?: string
+          codec?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          revoked?: boolean
+          serial: number
+          token: string
+        }
+        Update: {
+          batch?: string
+          codec?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          revoked?: boolean
+          serial?: number
+          token?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
